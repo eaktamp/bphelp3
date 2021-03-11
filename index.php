@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
     <meta charset="utf-8" />
+	<meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BP Check</title> 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,9 +23,12 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
                 </button>
-                <a class="navbar-brand waves-effect waves-dark" href=""><i class="large material-icons">device_thermostat</i> <strong>BP Check</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href=""><i class="large material-icons">device_thermostat</i> <strong>BP Check</strong>
+			
+			</a>
 
-		<div id="sideNav" href="" class="closed"><i class="material-icons dp48">toc</i></div>
+		<div id="sideNav" href="" class="closed"><i class="material-icons dp48">toc</i>
+	</div>
 
         </nav>
 	   <!--/. NAV TOP  -->
