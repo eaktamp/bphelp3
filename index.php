@@ -24,11 +24,11 @@
                 </button>
                 <a class="navbar-brand waves-effect waves-dark" href=""><i class="large material-icons">device_thermostat</i> <strong>BP Check</strong></a>
 				
-		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+		<div id="sideNav" href="" class="closed"><i class="material-icons dp48">toc</i></div>
             </div>  
         </nav>
 	   <!--/. NAV TOP  -->
-	   <nav class="navbar-default navbar-side" role="navigation">
+	   <nav class="navbar-default navbar-side" role="navigation" style="left: -260px;">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li><a class="active-menu waves-effect waves-dark" href="#"><i class="fa fa-dashboard"></i> เมนู</a></li>
@@ -41,7 +41,7 @@
             </div>
         </nav>
         <!-- /. NAV SIDE  -->
-		<div id="page-wrapper">
+		<div id="page-wrapper" style="margin-left: 0px;">
 		  <div class="header"> 
                <h1 class="page-header"></h1> 					
 		</div>
