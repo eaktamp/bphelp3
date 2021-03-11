@@ -15,6 +15,8 @@
 </head>
 
 <body>
+	<?php require_once "./function/autoload_fun.php";?>
+	
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
@@ -41,12 +43,17 @@
         <!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
 		  <div class="header"> 
-                        <h1 class="page-header">
-                        </h1> 					
+               <h1 class="page-header"></h1> 					
 		</div>
             <div id="page-inner">
 			<div class="dashboard-cards"> 
                 <div class="row">
+				<?php 	
+				  	$obj = new searchBp();
+					 $sql =  $obj->selectAllbp();
+					while ($row = pg_fetch_array($sql)) { 
+				?>
+				
                     <div class="col-xs-12 col-sm-6 col-md-3">
 						<div class="card horizontal cardIcon waves-effect waves-dark">
 						<div class="card-image red">
@@ -54,14 +61,16 @@
 						</div>
 						<div class="card-stacked red">
 						<div class="card-content">
-						<h3>HN 000777555</h3> 
+						<h3>HN <?php echo $row["hn"];?></h3> 
 						</div>
 						<div class="card-action">
-						<strong>150 / 90 </strong>
+						<strong><?php echo $row["bps"];?> / <?php echo $row["bpd"];?> </strong>
 						</div>
 						</div>
 						</div>
                     </div>
+
+				<?php }?>
                     <div class="col-xs-12 col-sm-6 col-md-3">
 						<div class="card horizontal cardIcon waves-effect waves-dark">
 						<div class="card-image orange">
