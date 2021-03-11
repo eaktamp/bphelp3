@@ -24,7 +24,7 @@
                 </button>
                 <a class="navbar-brand waves-effect waves-dark" href=""><i class="large material-icons">device_thermostat</i> <strong>BP Check</strong></a>
 				
-		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+			<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
             </div>  
         </nav>
 	   <!--/. NAV TOP  -->
@@ -71,7 +71,7 @@
                     </div>
 
 				<?php }?>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
+                    <!-- <div class="col-xs-12 col-sm-6 col-md-3">
 						<div class="card horizontal cardIcon waves-effect waves-dark">
 						<div class="card-image orange">
 						<i class="material-icons dp48">supervisor_account</i>
@@ -85,8 +85,8 @@
 						</div>
 						</div>
 						</div> 
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
+                    </div> -->
+                    <!-- <div class="col-xs-12 col-sm-6 col-md-3">
 							<div class="card horizontal cardIcon waves-effect waves-dark">
 						<div class="card-image blue">
 						<i class="material-icons dp48">supervisor_account</i>
@@ -100,9 +100,8 @@
 						</div>
 						</div>
 						</div> 	 
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-					
+                    </div> -->
+                    <!-- <div class="col-xs-12 col-sm-6 col-md-3">	
 					<div class="card horizontal cardIcon waves-effect waves-dark">
 						<div class="card-image green">
 						<i class="material-icons dp48">supervisor_account</i>
@@ -116,7 +115,7 @@
 						</div>
 						</div>
 						</div>  
-                    </div>
+                    </div> -->
                 </div>
 			   </div>
             </div>
