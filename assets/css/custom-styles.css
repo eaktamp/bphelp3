@@ -13,6 +13,12 @@ body {
     background: #1F2837;
 }
 
+.dt{
+
+    color: #fff;
+    font-size: 1.4em;
+}
+
  #wrapper {
     width: 100%;
 }
@@ -229,7 +235,7 @@ color: #fff;
 }
  .blue {background-color: #FFFFFF;color: #002A4C;}
   .red {
-background-color: #E70D24;
+background-color: red;
 color:#fff;
 }
   .brown {
@@ -237,7 +243,7 @@ background-color: #F5B252;
 color:#fff;
 } 
  .back-footer-red {
-background-color: #E70D24;
+background-color: red;
 color:#fff;
 border-top: 0px solid #fff;
 }
@@ -327,7 +333,7 @@ line-height: 30px;
 #easypiechart-blue .percent { color: #30a5ff;}
 #easypiechart-teal .percent { color: #1ebfae;}
 #easypiechart-orange .percent { color: #ffb53e;}
-#easypiechart-red .percent { color: #E70D24;}
+#easypiechart-red .percent { color: red;}
 
 	 
  .chat-panel .panel-body {
@@ -387,7 +393,7 @@ margin:0px;
     font-size: 24px;font-weight: 700;
     /* text-transform: uppercase; */
     line-height: 30px;
-    background: #388BF5;}
+    background: #1B4F72;}
 .navbar-brand b{
 color: #4BD28C;
 }
@@ -398,7 +404,7 @@ margin: 0px;
 padding: 0px;
 }
 .top-navbar .nav > li > a {position: relative;display: block;padding: 17px;color: #484848;margin: 0px;}
-.top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {text-decoration: none;color: #f44336 !important;background: transparent;}
+.top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {text-decoration: none;color: red !important;background: transparent;}
 .top-navbar .dropdown-menu{
 min-width: 230px;
 border-radius: 0 0 4px 4px;
@@ -427,7 +433,7 @@ padding-top: 4px;
     background-color: #233342 !important;
     color: #fff !important;
 }
-.active-menu i{color: #f44336 !important;}
+.active-menu i{color: red !important;}
 .arrow {
     float: right;
     margin-top: 8px;
@@ -485,11 +491,11 @@ ul.nav.nav-second-level.collapse.in {background: #121821;}
 }
 /* เมนูบน */
 .top-navbar {
-	background: #094F54;
+	background: #1B4F72;
 	border-bottom:none;
 }
 .top-navbar .nav > li > a > i {margin-right: 0;}
-.top-navbar .navbar-brand:hover {color: #FFFFFF;background-color: #f44336;}
+.top-navbar .navbar-brand:hover {color: #FFFFFF;background-color: red;}
 .dropdown-user li {
 margin: 8px 0;
 }
@@ -497,7 +503,7 @@ margin: 8px 0;
 .navbar-header {
     background: transparent;
 }
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {background-color: #f44336;}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {background-color: red;}
 .navbar-default .navbar-toggle {border-color: #ffffff;}
 
 .navbar-default .navbar-toggle .icon-bar {background-color: #ffffff;}
@@ -516,7 +522,7 @@ margin: 8px 0;
     float: left;
     left: 0;
     z-index: 3;
-    color: #f44336;
+    color: red;
     cursor:pointer;
     border-radius: 0;
     width: 14px;
@@ -535,20 +541,22 @@ margin: 8px 0;
 ul.dropdown-menu.dropdown-messages li a div {
   padding: 2px 0;
 }
+
+/* backพื้นหลัง */
 #page-wrapper{
 	background: #e0e8f5;
 }
 .dashboard-cards .card-stacked{
-	color:#fff;
-	border-left: 1px solid rgba(255, 255, 255, 0.18);
+	color: #fFf;
+	border-left: 1px solid #fff;
 }
 .dashboard-cards .card-content{
-	border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+	border-bottom: 1px solid #fff;
 }
 .dashboard-cards .card-action strong{
 	font-weight:700;
 	font-size: 16px;
-	color: rgba(255, 255, 255, 0.65);
+	color: #fff;
 }
 .donutpad {
     padding: 32px 0;
@@ -656,7 +664,7 @@ font-size: 19px;
 	padding: 0;
 }
 .card.horizontal.cardIcon .card-image {
-    background: #30cc7b;
+    /* background: #30cc7b; */
     color: #fff !important;
     font-size: 10px;
     width: 94px;
@@ -667,6 +675,7 @@ font-size: 19px;
     margin-top: 45%;
     font-size: 55px;
     opacity: .4;
+    color: #fff;
 }
 .navbar-brand i.large.material-icons {
     float: left;
@@ -697,7 +706,7 @@ font-size: 19px;
 	text-decoration: none;
 	color: #717171;
 	text-decoration: none;
-	color: #f44336;
+	color: red;
 }
 .dropdown-content li{
 	
@@ -719,12 +728,12 @@ padding: 0 15px 0px 15px;
 }
 .taskList li:last-child {
     padding-top: 5px;
-    color: #f44336;
+    color: red;
 }
  @media(max-width:768px) {
 	  
 	 .navbar-header {
-		background: #f44336;
+		background: red;
 	}
 	.navbar-side {
 		z-index: 2;
