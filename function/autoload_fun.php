@@ -13,4 +13,5 @@ class searchBp extends Dbcon
         return ( $query );
     }
 }
+
 ?>

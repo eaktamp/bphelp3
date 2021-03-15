@@ -38,7 +38,7 @@ $v = date('YmdHis'); // css version Reload
 
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="refresh" content="10">
+	<!-- <meta http-equiv="refresh" content="10"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>BP Check</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -49,6 +49,19 @@ $v = date('YmdHis'); // css version Reload
 	<link href="assets/css/custom-styles.css?v=<?php echo $v; ?>" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css?v=<?php echo $v; ?>">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var shownIds = new Array();
+			setInterval(function() {
+				$.get("config/realtime_visitperday.php", function(data) {
+					data = $.parseJSON(data);
+					$("#realtime_visitperday").html("" + data + "");
+				});
+			}, 5000);
+		});
+	</script>
+
 </head>
 
 <body>
@@ -76,8 +89,6 @@ $v = date('YmdHis'); // css version Reload
 					</li>
 				</ul>
 
-
-
 			</div>
 		</nav>
 	</div>
@@ -94,85 +105,13 @@ $v = date('YmdHis'); // css version Reload
 			</ul>
 		</div>
 	</nav>
-	<!-- /. NAV SIDE  -->
 	<div id="page-wrapper" style="margin-left: 0px;">
 		<div class="header">
 			<h1 class="page-header"></h1>
 		</div>
-		<div id="page-inner">
-			<div class="dashboard-cards">
-				<div class="row">
-					<?php
-					$obj = new searchBp();
-					$sql =  $obj->selectAllbp();
-					while ($row = pg_fetch_array($sql)) {
-					?>
-
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="card horizontal cardIcon waves-effect waves-dark">
-								<div class="card-image red">
-									<i class="material-icons dp48">supervisor_account</i>
-								</div>
-								<div class="card-stacked red">
-									<div class="card-content">
-										<h3>HN <?php echo $row["hn"]; ?></h3>
-									</div>
-									<div class="card-action">
-										<strong><?php echo $row["bps"]; ?> / <?php echo $row["bpd"]; ?> </strong>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					<?php } ?>
-					 <div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="card horizontal cardIcon waves-effect waves-dark">
-						<div class="card-image orange">
-						<i class="material-icons dp48">supervisor_account</i>
-						</div>
-						<div class="card-stacked orange">
-						<div class="card-content">
-						<h3>36,540</h3> 
-						</div>
-						<div class="card-action">
-						<strong>SALES</strong>
-						</div>
-						</div>
-						</div> 
-                    </div>
-					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="card horizontal cardIcon waves-effect waves-dark">
-						<div class="card-image blue">
-						<i class="material-icons dp48">supervisor_account</i>
-						</div>
-						<div class="card-stacked blue">
-						<div class="card-content">
-						<h3>24,225</h3> 
-						</div>
-						<div class="card-action">
-						<strong>PRODUCTS</strong>
-						</div>
-						</div>
-						</div> 	 
-                    </div> -->
-					<!-- <div class="col-xs-12 col-sm-6 col-md-3">	
-					<div class="card horizontal cardIcon waves-effect waves-dark">
-						<div class="card-image green">
-						<i class="material-icons dp48">supervisor_account</i>
-						</div>
-						<div class="card-stacked green">
-						<div class="card-content">
-						<h3>88,658</h3> 
-						</div>
-						<div class="card-action">
-						<strong>VISITS</strong>
-						</div>
-						</div>
-						</div>  
-                    </div> -->
-				</div>
-			</div>
+		<div id="realtime_visitperday">
 		</div>
+	</div>
 	</div>
 	</div>
 	<script src="assets/js/jquery-1.10.2.js"></script>
