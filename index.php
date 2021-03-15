@@ -38,7 +38,6 @@ $v = date('YmdHis'); // css version Reload
 
 <head>
 	<meta charset="utf-8" />
-	<!-- <meta http-equiv="refresh" content="10"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>BP Check</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -50,13 +49,14 @@ $v = date('YmdHis'); // css version Reload
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css?v=<?php echo $v; ?>">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var shownIds = new Array();
 			setInterval(function() {
-				$.get("config/realtime_visitperday.php", function(data) {
+				$.get("config/sql_load.php", function(data) {
 					data = $.parseJSON(data);
-					$("#realtime_visitperday").html("" + data + "");
+					$("#pop_bp").html("" + data + "");
 				});
 			}, 5000);
 		});
@@ -92,7 +92,6 @@ $v = date('YmdHis'); // css version Reload
 			</div>
 		</nav>
 	</div>
-	<!--/. NAV TOP  -->
 	<nav class="navbar-default navbar-side" role="navigation" style="left: -260px;">
 		<div class="sidebar-collapse">
 			<ul class="nav" id="main-menu">
@@ -109,7 +108,7 @@ $v = date('YmdHis'); // css version Reload
 		<div class="header">
 			<h1 class="page-header"></h1>
 		</div>
-		<div id="realtime_visitperday">
+		<div id="pop_bp">
 		</div>
 	</div>
 	</div>
