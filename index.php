@@ -85,12 +85,12 @@ $v = date('YmdHis'); // css version Reload
 	<nav class="navbar-default navbar-side" role="navigation" style="left: -260px;">
 		<div class="sidebar-collapse">
 			<ul class="nav" id="main-menu">
-				<li><a class="active-menu waves-effect waves-dark" href="#"><i class="fa fa-dashboard"></i> เมนู</a></li>
-				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> เมนู 1</a></li>
-				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> เมนู 1</a></li>
-				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> เมนู 1</a></li>
-				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-table"></i> เมนู 1</a></li>
-				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-edit"></i> เมนู 1 </a></li>
+				<li><a class="active-menu waves-effect waves-dark" href="#"><i class="fa fa-dashboard"></i> เมนู </a></li>
+				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> กำหนดค่า BP </a></li>
+				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> ค่ามาตรฐาน </a></li>
+				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> เมนู 2 </a></li>
+				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-table"></i> เมนู 3 </a></li>
+				<li><a href="#" class="waves-effect waves-dark"><i class="fa fa-edit"></i> เมนู 4 </a></li>
 			</ul>
 		</div>
 	</nav>
