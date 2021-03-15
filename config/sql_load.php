@@ -1,6 +1,7 @@
 <?php 
 include "pg_con.class.php";
 
+
 $sql_rt = " SELECT  vn,hn,vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd 
         FROM opdscreen 
         WHERE bps >'150' 

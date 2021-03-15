@@ -65,6 +65,7 @@ $v = date('YmdHis'); // css version Reload
 </head>
 
 <body>
+	<?php// require_once "./function/autoload_fun.php"; ?>
 
 	<div id="wrapper">
 		<nav class="navbar navbar-default top-navbar" role="navigation">
@@ -77,6 +78,8 @@ $v = date('YmdHis'); // css version Reload
 
 				<div id="sideNav" href="" class="closed"><i class="material-icons dp48">toc</i>
 				</div>
+
+
 
 				<ul class="nav navbar-right">
 					<li>
