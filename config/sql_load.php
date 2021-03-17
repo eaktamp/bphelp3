@@ -136,19 +136,21 @@ for ($i = 0; $i < sizeof($arrayOderby); $i++) {
 
 foreach ($arrayOderby as $key => $array) {
         $color = "";
-        if( $arrayOderby[$key][0] == 3){
+        if( $arrayOderby[$key][0] >= 4){
           $color ="red";
-        } else if ($arrayOderby[$key][0] == 2)  {
-          $color ="blue"; 
+        } else if ($arrayOderby[$key][0] == 3)  {
+          $color ="orange"; 
         }
-        else if ($arrayOderby[$key][0] == 1)  {
+        else if ($arrayOderby[$key][0] == 2)  {
+           $color ="yellow"; 
+        }else {
            $color ="green"; 
         }
                
         $dhc_rt .= '<div class="col-xs-12 col-sm-6 col-md-3" >';
         $dhc_rt .= '<div class="card horizontal cardIcon waves-effect waves-dark" >';
         $dhc_rt .= '<div class="card-image '.$color.'">';
-        $dhc_rt .= '<h1 style="padding-top:60%">';
+        $dhc_rt .= '<h1 style="padding-top:60% ;color:black;font-weight:bold">';
         $dhc_rt .=  $arrayOderby[$key][0]//$arrayOderby[$key][9]+ $arrayOderby[$key][10] + $arrayOderby[$key][12] 
         . '</h1></div>';
         $dhc_rt .= '<div class="card-stacked black">';
