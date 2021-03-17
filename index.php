@@ -61,11 +61,11 @@ $v = date('YmdHis'); // css version Reload
 			}, 1000);
 		});
 	</script>
-	<style>
+	<!-- <style>
 	.card{
-		background-color: black;
+		background-color: #ff8c00;
 	}
-	
+	 -->
 	</style>
 
 </head>

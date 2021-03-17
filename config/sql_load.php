@@ -21,6 +21,7 @@ $dhc_rt .= '<div class="row">';
 
 $index = 0;
 $arrayOderby = [];
+
 while ($row_result = pg_fetch_assoc($result_rt)) {
 
         $hn = $row_result["hn"];
@@ -32,13 +33,8 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
         $temperature = $row_result["temperature"];
         $queue = $row_result["oqueue"];
 
-        $sumscore = 0;
-        $scorebps = 0;
-        $scorepulse = 0;
-        $scorerr = 0;
-        $scoretemperature = 0;
         // bps
-        if ($bps <= 80 && $bps > 0) {
+        if ( $bps <= 80 && $bps > 0) {
                 $scorebps = 3;
         } else if ($bps >= 81 &&  $bps <= 90) {
                 $scorebps = 2;
@@ -50,6 +46,8 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
                 $scorebps = 1;
         } else if ($bps >= 200) {
                 $scorebps = 2;
+        }else{
+                $scorebps = 0;
         }
 
         // PR pulse
@@ -65,6 +63,8 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
                 $scorepulse = 2;
         } else if ($pulse >= 140) {
                 $scorepulse = 3;
+        }else {
+                $scorepulse = 0;
         }
 
         //BT temperature
@@ -78,10 +78,13 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
                 $scoretemperature = 1;
         } else if ($temperature >= 38.5) {
                 $scoretemperature = 2;
+        }else{
+                $scoretemperature = 0;
         }
 
         //RR
-        if ($rr <= 8 && $rr  > 0) {
+
+        if ($rr <= 8 && ($rr  > 0 || $rr != '')) {
                 $scorerr = 3;
         } else if ($rr >= 9 &&  $rr <= 20) {
                 $scorerr = 0;
@@ -94,18 +97,18 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
         }
 
 
-        $sumscore =  $scorebps + $scorepulse + $scorerr + $scoretemperature;
-
+        
         //เก็บค่าของคนที่ score มากกว่าที่กำหนด ลง array เพื่อเอาไปแสดงผล
+        $sumscore = intval($scorebps)+intval($scorepulse)+intval($scorerr)+intval($scoretemperature);
         if ($sumscore >= '1') {
-                $arrayOderby[$index][0] = $sumscore;
+                $arrayOderby[$index][0] =  $sumscore;
                 $arrayOderby[$index][1] = $patient;
                 $arrayOderby[$index][2] = $hn;
                 $arrayOderby[$index][3] = $queue;
                 $arrayOderby[$index][4] = $bps;
                 $arrayOderby[$index][5] = $bpd;
-                $arrayOderby[$index][6] = $pulse;
-                $arrayOderby[$index][7] = $temperature;
+                $arrayOderby[$index][6] = $pulse  > 0 ? $pulse:0;
+                $arrayOderby[$index][7] = $temperature  > 0 ? $temperature:0;
                 $arrayOderby[$index][8] = $rr > 0 ? $rr:0;
                 $arrayOderby[$index][9] = $scorebps;
                 $arrayOderby[$index][10] = $scorepulse;
@@ -117,34 +120,48 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
 
 
 
+
+
 for ($i = 0; $i < sizeof($arrayOderby); $i++) {
         for ($j = $i + 1; $j < sizeof($arrayOderby); $j++) {
                 if ($arrayOderby[$i][0] < $arrayOderby[$j][0]) {
-                        $temp = $arrayOderby[$i][0];
-                        $arrayOderby[$i][0] = $arrayOderby[$j][0];
-                        $arrayOderby[$j][0] = $temp;
+                        $temp = $arrayOderby[$i];
+                        $arrayOderby[$i] = $arrayOderby[$j];
+                        $arrayOderby[$j] = $temp;
                 }
         }
 }
 
 
-foreach ($arrayOderby as $key => $array) {
 
+foreach ($arrayOderby as $key => $array) {
+        $color = "";
+        if( $arrayOderby[$key][0] == 3){
+          $color ="red";
+        } else if ($arrayOderby[$key][0] == 2)  {
+          $color ="blue"; 
+        }
+        else if ($arrayOderby[$key][0] == 1)  {
+           $color ="green"; 
+        }
+               
         $dhc_rt .= '<div class="col-xs-12 col-sm-6 col-md-3" >';
-        $dhc_rt .= '<div class="card horizontal cardIcon waves-effect waves-dark">';
-        $dhc_rt .= '<div class="card-image">';
+        $dhc_rt .= '<div class="card horizontal cardIcon waves-effect waves-dark" >';
+        $dhc_rt .= '<div class="card-image '.$color.'">';
         $dhc_rt .= '<h1 style="padding-top:60%">';
-        $dhc_rt .=   $arrayOderby[$key][0] . '</h1></div>';
-        $dhc_rt .= '<div class="card-stacked">';
-        $dhc_rt .= '<div class="card-content">';
+        $dhc_rt .=  $arrayOderby[$key][0]//$arrayOderby[$key][9]+ $arrayOderby[$key][10] + $arrayOderby[$key][12] 
+        . '</h1></div>';
+        $dhc_rt .= '<div class="card-stacked black">';
+        $dhc_rt .= '<div class="card-content ">';
+        // $dhc_rt .= '<h3>Score bp : ' .  $arrayOderby[$key][9] . '  pr :  ' . $arrayOderby[$key][10] .' rr: '.$arrayOderby[$key][11].' tem: ' .$arrayOderby[$key][12] . '</h5>';
         $dhc_rt .= '<h2 style="color:white;">' .  $arrayOderby[$key][1] . '</h3>';
-        $dhc_rt .= '<h3> HN : ' .  $arrayOderby[$key][2] . '  หมายเลข : ' . $arrayOderby[$key][3] . '</h5>';
+        $dhc_rt .= '<h3 > HN : ' .  $arrayOderby[$key][2] . '  หมายเลข : ' . $arrayOderby[$key][3] . '</h5>';
         $dhc_rt .= '</div>';
         $dhc_rt .= '<div class="card-action">';
-        $dhc_rt .= (intval($arrayOderby[$key][9])  <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>';
-        $dhc_rt .= (intval($arrayOderby[$key][10]) <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'pulse : ' . $arrayOderby[$key][6] . '  </strong>';
-        $dhc_rt .= (intval($arrayOderby[$key][11]) <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'temperature : ' .   $arrayOderby[$key][7] . ' </strong>';
-        $dhc_rt .= (intval($arrayOderby[$key][12]) <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'rr : ' . $arrayOderby[$key][8] . '</strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][9])  == 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][10]) == 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'pulse : ' . $arrayOderby[$key][6] . '  </strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][11]) == 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'rr : ' . $arrayOderby[$key][8] . '</strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][12]) == 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'temperature : ' .   $arrayOderby[$key][7] . ' </strong>';
         $dhc_rt .= '</div>';
         $dhc_rt .= '</div>';
         $dhc_rt .= '</div>';
