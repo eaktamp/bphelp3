@@ -156,8 +156,8 @@ foreach ($arrayOderby as $key => $array) {
         $dhc_rt .= '<div class="card-stacked black">';
         $dhc_rt .= '<div class="card-content ">';
         // $dhc_rt .= '<h3>Score bp : ' .  $arrayOderby[$key][9] . '  pr :  ' . $arrayOderby[$key][10] .' rr: '.$arrayOderby[$key][11].' tem: ' .$arrayOderby[$key][12] . '</h5>';
-        $dhc_rt .= '<h2 style="color:white;">' .  $arrayOderby[$key][1] . '</h3>';
-        $dhc_rt .= '<h3 > HN : ' .  $arrayOderby[$key][2] . '  หมายเลข : ' . $arrayOderby[$key][3] . '</h5>';
+        // $dhc_rt .= '<h2 style="color:white;">' .  $arrayOderby[$key][1] . '</h3>';
+        $dhc_rt .= '<h3 > HN : ' .  $arrayOderby[$key][2] . ' <br> หมายเลข : ' . $arrayOderby[$key][3] . '</h5>';
         $dhc_rt .= '</div>';
         $dhc_rt .= '<div class="card-action">';
         $dhc_rt .= (intval($arrayOderby[$key][9])  == 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>';
