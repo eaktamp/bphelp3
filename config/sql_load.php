@@ -1,7 +1,7 @@
 <?php
 include "pg_con.class.php";
 
-$sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)as patient,opds.rr,
+$sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)as patient,ROUND(opds.rr,1)as rr,
         opds.vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd ,ROUND(pulse,0)as pulse,ROUND(temperature,1)as temperature,oqueue
         FROM opdscreen opds
         LEFT OUTER JOIN patient pt on pt.hn = opds.hn
@@ -88,6 +88,24 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
                 $scoretemperature = 2;
         }
 
+         //RR
+        if ($rr <= 8 && $rr  > 0 ) {
+                $scorerr = 3;
+        }
+        else if ($rr >= 9 &&  $rr <= 20) {
+                $scorerr = 0;
+        }
+        else if ($rr >= 21 &&  $rr <= 25) {
+                $scorerr = 1;
+        }
+        else if ($rr >= 26 &&  $rr <= 35 ) {
+                $scorerr = 2;
+        }
+        else if ($rr >= 35 ) {
+                $scorerr = 3;
+        }
+
+
         $sumscore =  $scorebps + $scorepulse + $scorerr + $scoretemperature;
 
 
@@ -111,7 +129,7 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
                 $dhc_rt .= '</div>';
         }
 
-        
+
  
 }
 
