@@ -58,9 +58,15 @@ $v = date('YmdHis'); // css version Reload
 					data = $.parseJSON(data);
 					$("#pop_bp").html("" + data + "");
 				});
-			}, 5000);
+			}, 1000);
 		});
 	</script>
+	<style>
+	.card{
+		background-color: black;
+	}
+	
+	</style>
 
 </head>
 

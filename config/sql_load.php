@@ -1,7 +1,7 @@
 <?php
 include "pg_con.class.php";
 
-$sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)as patient,ROUND(opds.rr,1)as rr,
+$sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)as patient,ROUND(opds.rr,0)as rr,
         opds.vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd ,ROUND(pulse,0)as pulse,ROUND(temperature,1)as temperature,oqueue
         FROM opdscreen opds
         LEFT OUTER JOIN patient pt on pt.hn = opds.hn
@@ -19,8 +19,10 @@ $dhc_rt .= '<div class="dashboard-cards">';
 $dhc_rt .= '<div class="row">';
 
 
-
+$index = 0;
+$arrayOderby = [];
 while ($row_result = pg_fetch_assoc($result_rt)) {
+
         $hn = $row_result["hn"];
         $bps =   $row_result["bps"];
         $bpd = $row_result["bpd"];
@@ -30,107 +32,123 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
         $temperature = $row_result["temperature"];
         $queue = $row_result["oqueue"];
 
-        $sumscore = 0; $scorebps = 0; $scorepulse = 0;$scorerr = 0; $scoretemperature = 0;
+        $sumscore = 0;
+        $scorebps = 0;
+        $scorepulse = 0;
+        $scorerr = 0;
+        $scoretemperature = 0;
         // bps
-        if ($bps <= 80 && $bps >0) {
+        if ($bps <= 80 && $bps > 0) {
                 $scorebps = 3;
-        }
-        else if ($bps >= 81 &&  $bps <= 90) {
+        } else if ($bps >= 81 &&  $bps <= 90) {
                 $scorebps = 2;
-        }
-        else if ($bps >= 91 &&  $bps <= 100) {
+        } else if ($bps >= 91 &&  $bps <= 100) {
                 $scorebps = 1;
-        }
-        else if ($bps >= 101 &&  $bps <= 180) {
+        } else if ($bps >= 101 &&  $bps <= 180) {
                 $scorebps = 0;
-        }
-        else if ($bps >= 181 &&  $bps <= 199) {
+        } else if ($bps >= 181 &&  $bps <= 199) {
                 $scorebps = 1;
-        }
-        else if ($bps >= 200) {
+        } else if ($bps >= 200) {
                 $scorebps = 2;
         }
 
         // PR pulse
-        if ($pulse <= 40 && $pulse >0) {
+        if ($pulse <= 40 && $pulse > 0) {
                 $scorepulse = 3;
-        }
-        else if ($pulse >= 41 &&  $pulse <= 50) {
+        } else if ($pulse >= 41 &&  $pulse <= 50) {
                 $scorepulse = 1;
-        }
-        else if ($pulse >= 51 &&  $pulse <= 100) {
+        } else if ($pulse >= 51 &&  $pulse <= 100) {
                 $scorepulse = 0;
-        }
-        else if ($pulse >= 101 &&  $pulse <= 120) {
+        } else if ($pulse >= 101 &&  $pulse <= 120) {
                 $scorepulse = 1;
-        }
-        else if ($pulse >= 121 &&  $pulse <= 130) {
+        } else if ($pulse >= 121 &&  $pulse <= 130) {
                 $scorepulse = 2;
-        }
-        else if ($pulse >= 140 ) {
+        } else if ($pulse >= 140) {
                 $scorepulse = 3;
         }
 
         //BT temperature
-        if ($temperature <= 35 && $temperature  > 0 ) {
+        if ($temperature <= 35 && $temperature  > 0) {
                 $scoretemperature = 2;
-        }
-        else if ($temperature >= 35.1 &&  $temperature <= 36) {
+        } else if ($temperature >= 35.1 &&  $temperature <= 36) {
                 $scoretemperature = 1;
-        }
-        else if ($temperature >= 36.1 &&  $temperature <= 38) {
+        } else if ($temperature >= 36.1 &&  $temperature <= 38) {
                 $scoretemperature = 0;
-        }
-        else if ($temperature >= 38.1 &&  $temperature <= 38.4) {
+        } else if ($temperature >= 38.1 &&  $temperature <= 38.4) {
                 $scoretemperature = 1;
-        }
-        else if ($temperature >= 38.5 ) {
+        } else if ($temperature >= 38.5) {
                 $scoretemperature = 2;
         }
 
-         //RR
-        if ($rr <= 8 && $rr  > 0 ) {
+        //RR
+        if ($rr <= 8 && $rr  > 0) {
                 $scorerr = 3;
-        }
-        else if ($rr >= 9 &&  $rr <= 20) {
+        } else if ($rr >= 9 &&  $rr <= 20) {
                 $scorerr = 0;
-        }
-        else if ($rr >= 21 &&  $rr <= 25) {
+        } else if ($rr >= 21 &&  $rr <= 25) {
                 $scorerr = 1;
-        }
-        else if ($rr >= 26 &&  $rr <= 35 ) {
+        } else if ($rr >= 26 &&  $rr <= 35) {
                 $scorerr = 2;
-        }
-        else if ($rr >= 35 ) {
+        } else if ($rr >= 35) {
                 $scorerr = 3;
         }
 
 
         $sumscore =  $scorebps + $scorepulse + $scorerr + $scoretemperature;
 
-
-
-        if(  $sumscore == '3'){
-                $dhc_rt .= '<div class="col-xs-12 col-sm-6 col-md-3">';
-                $dhc_rt .= '<div class="card horizontal cardIcon waves-effect waves-dark">';
-                $dhc_rt .= '<div class="card-image red">';
-                $dhc_rt .= '<h1 style="padding-top:60%">';
-                $dhc_rt .=   $sumscore.'</h1></div>';
-                $dhc_rt .= '<div class="card-stacked red">';
-                $dhc_rt .= '<div class="card-content">';
-                $dhc_rt .= '<h2 style="color:white;">' .  $patient .'</h2>';
-                $dhc_rt .= '<h5> HN : ' .  $hn . '  หมายเลข : ' . $queue . '</h5>';
-                $dhc_rt .= '</div>';
-                $dhc_rt .= '<div class="card-action">';
-                $dhc_rt .= '<strong>' . $bps . ' / ' . $bpd . ' pulse : ' . $pulse . '  temperature : ' .   $temperature . ' rr :' . $rr . '</strong>';
-                $dhc_rt .= '</div>';
-                $dhc_rt .= '</div>';
-                $dhc_rt .= '</div>';
-                $dhc_rt .= '</div>';
+        //เก็บค่าของคนที่ score มากกว่าที่กำหนด ลง array เพื่อเอาไปแสดงผล
+        if ($sumscore >= '1') {
+                $arrayOderby[$index][0] = $sumscore;
+                $arrayOderby[$index][1] = $patient;
+                $arrayOderby[$index][2] = $hn;
+                $arrayOderby[$index][3] = $queue;
+                $arrayOderby[$index][4] = $bps;
+                $arrayOderby[$index][5] = $bpd;
+                $arrayOderby[$index][6] = $pulse;
+                $arrayOderby[$index][7] = $temperature;
+                $arrayOderby[$index][8] = $rr > 0 ? $rr:0;
+                $arrayOderby[$index][9] = $scorebps;
+                $arrayOderby[$index][10] = $scorepulse;
+                $arrayOderby[$index][11] = $scorerr;
+                $arrayOderby[$index][12] = $scoretemperature;
+                $index++;
         }
+}
 
 
- 
+
+for ($i = 0; $i < sizeof($arrayOderby); $i++) {
+        for ($j = $i + 1; $j < sizeof($arrayOderby); $j++) {
+                if ($arrayOderby[$i][0] < $arrayOderby[$j][0]) {
+                        $temp = $arrayOderby[$i][0];
+                        $arrayOderby[$i][0] = $arrayOderby[$j][0];
+                        $arrayOderby[$j][0] = $temp;
+                }
+        }
+}
+
+
+foreach ($arrayOderby as $key => $array) {
+
+        $dhc_rt .= '<div class="col-xs-12 col-sm-6 col-md-3" >';
+        $dhc_rt .= '<div class="card horizontal cardIcon waves-effect waves-dark">';
+        $dhc_rt .= '<div class="card-image">';
+        $dhc_rt .= '<h1 style="padding-top:60%">';
+        $dhc_rt .=   $arrayOderby[$key][0] . '</h1></div>';
+        $dhc_rt .= '<div class="card-stacked">';
+        $dhc_rt .= '<div class="card-content">';
+        $dhc_rt .= '<h2 style="color:white;">' .  $arrayOderby[$key][1] . '</h3>';
+        $dhc_rt .= '<h3> HN : ' .  $arrayOderby[$key][2] . '  หมายเลข : ' . $arrayOderby[$key][3] . '</h5>';
+        $dhc_rt .= '</div>';
+        $dhc_rt .= '<div class="card-action">';
+        $dhc_rt .= (intval($arrayOderby[$key][9])  <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][10]) <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'pulse : ' . $arrayOderby[$key][6] . '  </strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][11]) <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'temperature : ' .   $arrayOderby[$key][7] . ' </strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][12]) <= 0 ?'<strong>':'<strong style="background-color: yellow; color:#000000;">').'rr : ' . $arrayOderby[$key][8] . '</strong>';
+        $dhc_rt .= '</div>';
+        $dhc_rt .= '</div>';
+        $dhc_rt .= '</div>';
+        $dhc_rt .= '</div>';
 }
 
 $dhc_rt .= '</div>';
