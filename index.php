@@ -70,7 +70,7 @@ $v = date('YmdHis'); // css version Reload
 
 </head>
 
-<body>
+<body style="  zoom:70%;">
 
 	<div id="wrapper">
 		<nav class="navbar navbar-default top-navbar" role="navigation">
