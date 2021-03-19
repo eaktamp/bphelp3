@@ -87,7 +87,7 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
 
         if ($rr <= 8 && ($rr  > 0 || $rr != '')) {
                 $scorerr = 3;
-        } else if ($rr >= 9 &&  $rr <= 20) {
+        } else if ($rr >= 9 &&  $rr <= 20 || $rr == '') {
                 $scorerr = 0;
         } else if ($rr >= 21 &&  $rr <= 25) {
                 $scorerr = 1;
@@ -110,7 +110,7 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
                 $arrayOderby[$index][5]  = $bpd;
                 $arrayOderby[$index][6]  = $pulse  > 0 ? $pulse : 0;
                 $arrayOderby[$index][7]  = $temperature  > 0 ? $temperature : 0;
-                $arrayOderby[$index][8]  = $rr > 0 ? $rr : 0;
+                $arrayOderby[$index][8]  = $rr != '' ? $rr : '?? ';;
                 $arrayOderby[$index][9]  = $scorebps;
                 $arrayOderby[$index][10] = $scorepulse;
                 $arrayOderby[$index][11] = $scorerr;
@@ -153,14 +153,14 @@ foreach ($arrayOderby as $key => $array) {
         $dhc_rt .= '<div class="col-xs-12 col-sm-6 col-md-3" >';
         $dhc_rt .= '<div class="card horizontal cardIcon waves-effect waves-dark" >';
         $dhc_rt .= '<div class="card-image ' . $color . '">';
-        $dhc_rt .= '<h1 style="padding-top:60% ;color:black;font-weight:bold">';
+        $dhc_rt .= '<h1 style="padding-top:60% ;color:black;font-weight:bold;">';
         $dhc_rt .=  $arrayOderby[$key][0] //$arrayOderby[$key][9]+ $arrayOderby[$key][10] + $arrayOderby[$key][12] 
                 . '</h1></div>';
         $dhc_rt .= '<div class="card-stacked black">';
         $dhc_rt .= '<div class="card-content ">';
         // $dhc_rt .= '<h3>Score bp : ' .  $arrayOderby[$key][9] . '  pr :  ' . $arrayOderby[$key][10] .' rr: '.$arrayOderby[$key][11].' tem: ' .$arrayOderby[$key][12] . '</h5>';date_diff($arrayOderby[$key][13], time())
-        $dhc_rt .= '<h1 style="color:white;">' .  $arrayOderby[$key][1] . '</h1>';
-        $dhc_rt .= '<h3 > HN : ' .  $arrayOderby[$key][2] . '</h3>';
+        $dhc_rt .= '<h1 style="color:white;height: 48px;">' .  $arrayOderby[$key][1]  . '</h1>';
+        $dhc_rt .= '<h3 style="float:right;font-weight:bold;"> HN : ' .  $arrayOderby[$key][2] . '</h3>';
         $dhc_rt .= '</div>';
 
         $dhc_rt .= '<div class="card-action">';
@@ -168,7 +168,7 @@ foreach ($arrayOderby as $key => $array) {
         $dhc_rt .= '</div>';
 
         $dhc_rt .= '<div class="card-action">';
-        $dhc_rt .= (intval($arrayOderby[$key][9])  == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' BP ' . $arrayOderby[$kedy][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>';
+        $dhc_rt .= (intval($arrayOderby[$key][9])  == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>';
         $dhc_rt .= (intval($arrayOderby[$key][10]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' pulse : ' . $arrayOderby[$key][6] . '  </strong> ';
         $dhc_rt .= (intval($arrayOderby[$key][11]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' rr : ' . $arrayOderby[$key][8] . '</strong>';
         $dhc_rt .= (intval($arrayOderby[$key][12]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' temperature : ' .   $arrayOderby[$key][7] . ' </strong>';
