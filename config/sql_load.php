@@ -1,7 +1,7 @@
 <?php
 include "pg_con.class.php";
 
-$sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)as patient,ROUND(opds.rr,0)as rr,ov.vsttime,
+$sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname,' อายุ ',extract(year FROM age(pt.birthday)))as patient,ROUND(opds.rr,0)as rr,ov.vsttime,
         opds.vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd ,ROUND(pulse,0)as pulse,ROUND(temperature,1)as temperature,oqueue,sp.name as spname
         FROM opdscreen opds
         LEFT OUTER JOIN patient pt on pt.hn = opds.hn
