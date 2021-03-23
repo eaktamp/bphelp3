@@ -154,7 +154,7 @@ foreach ($arrayOderby as $key => $array) {
         }
 
         $dhc_rt .=
-                '<div class="col-xs-12 col-sm-6 col-md-3" >
+                '<div class="col-xs-12 col-sm-6 col-md-4" >
                         <div class="card horizontal cardIcon waves-effect waves-dark" >
                                 <div class="card-image ' . $color . '">
                                         <h1 style="padding-top:60% ;color:black;font-weight:bold;">' . $arrayOderby[$key][0] . '</h1>
