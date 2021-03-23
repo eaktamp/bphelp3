@@ -104,7 +104,7 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
         //เก็บค่าของคนที่ score มากกว่าที่กำหนด ลง array เพื่อเอาไปแสดงผล
         $sumscore = intval($scorebps) + intval($scorepulse) + intval($scorerr) + intval($scoretemperature);
         if ($sumscore >= '1') {
-                $arrayOderby[$index][0]  = $sumscore;
+                $arrayOderby[$index][0]  = $sumscore < 6 ? $sumscore : 6;
                 $arrayOderby[$index][1]  = $patient;
                 $arrayOderby[$index][2]  = $hn;
                 $arrayOderby[$index][3]  = $queue;
@@ -154,14 +154,25 @@ foreach ($arrayOderby as $key => $array) {
         }
 
         $dhc_rt .=
-                '<div class="col-xs-12 col-sm-6 col-md-3" >
+                '<style>
+			h1 {
+				font-size: 70px;
+			}
+                        h2 {
+				font-size: 50px;
+			}
+                        h3 {
+				font-size: 50px;
+			}
+		</style>
+                <div class="col-xs-12 col-sm-6 col-md-6" >
                         <div class="card horizontal cardIcon waves-effect waves-dark" >
                                 <div class="card-image ' . $color . '">
                                         <h1 style="padding-top:60% ;color:black;font-weight:bold;">' . $arrayOderby[$key][0] . '</h1>
                                 </div>
                                 <div class="card-stacked black"> 
                                         <div class="card-content "> 
-                                        <h1 style="color:white;height: 48px;">' .  $arrayOderby[$key][1]  . '</h1> 
+                                        <h1 style="color:white;height: 100px;">' .  $arrayOderby[$key][1]  . '</h1> 
                                 <h3 style="float:right;font-weight:bold;"> HN : ' .  $arrayOderby[$key][2] . '</h3>
                                 </div> 
                                 <div class="card-action" style="padding-top: 0px;" >
@@ -169,10 +180,10 @@ foreach ($arrayOderby as $key => $array) {
                                         <h1 style="font-weight:bold;background-color: #FFFFFF; color:#000000;padding:20px;"> Q : <spen style="color:#710a0a;">&nbsp; ' . $arrayOderby[$key][3] . '  </spen>  &nbsp;' .  substr(date($arrayOderby[$key][13]), 0, 5) .  ' น.</h1> 
                                 </div>
                                 <div class="card-action">' .
-                (intval($arrayOderby[$key][9])  == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>' .
-                (intval($arrayOderby[$key][10]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . '&nbsp P : ' . $arrayOderby[$key][6] . '  </strong> ' .
-                (intval($arrayOderby[$key][11]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . '&nbsp RR : ' . $arrayOderby[$key][8] . '</strong>' .
-                (intval($arrayOderby[$key][12]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . '&nbsp T : ' .   $arrayOderby[$key][7] . ' </strong>' .
+                (intval($arrayOderby[$key][9])  == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbsp BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . '&nbsp</strong>' .
+                (intval($arrayOderby[$key][10]) == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbsp P : ' . $arrayOderby[$key][6] . '&nbsp</strong> ' .
+                (intval($arrayOderby[$key][11]) == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbsp RR : ' . $arrayOderby[$key][8] . '&nbsp</strong>' .
+                (intval($arrayOderby[$key][12]) == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbsp T : ' .   $arrayOderby[$key][7] . '&nbsp</strong>' .
                 '</div> 
                                 </div>
                         </div>

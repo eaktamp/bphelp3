@@ -61,12 +61,7 @@ $v = date('YmdHis'); // css version Reload
 			}, 3000);
 		});
 	</script>
-	<!-- <style>
-	.card{
-		background-color: #ff8c00;
-	}
-	 -->
-	</style>
+
 
 </head>
 
@@ -111,6 +106,11 @@ $v = date('YmdHis'); // css version Reload
 		<div class="header">
 			<h1 class="page-header"></h1>
 		</div>
+		<style>
+			h1 {
+				font-size: 200px;
+			}
+		</style>
 		<div id="pop_bp">
 		</div>
 	</div>
