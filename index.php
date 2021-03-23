@@ -58,7 +58,7 @@ $v = date('YmdHis'); // css version Reload
 					data = $.parseJSON(data);
 					$("#pop_bp").html("" + data + "");
 				});
-			}, 1000);
+			}, 3000);
 		});
 	</script>
 	<!-- <style>
