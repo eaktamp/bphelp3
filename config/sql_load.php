@@ -170,9 +170,9 @@ foreach ($arrayOderby as $key => $array) {
                                 </div>
                                 <div class="card-action">' .
                 (intval($arrayOderby[$key][9])  == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' BP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . ' </strong>' .
-                (intval($arrayOderby[$key][10]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' P : ' . $arrayOderby[$key][6] . '  </strong> ' .
-                (intval($arrayOderby[$key][11]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' RR : ' . $arrayOderby[$key][8] . '</strong>' .
-                (intval($arrayOderby[$key][12]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . ' T : ' .   $arrayOderby[$key][7] . ' </strong>' .
+                (intval($arrayOderby[$key][10]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . '&nbsp P : ' . $arrayOderby[$key][6] . '  </strong> ' .
+                (intval($arrayOderby[$key][11]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . '&nbsp RR : ' . $arrayOderby[$key][8] . '</strong>' .
+                (intval($arrayOderby[$key][12]) == 0 ? '<strong>' : '<strong style="background-color: yellow; color:#000000;">') . '&nbsp T : ' .   $arrayOderby[$key][7] . ' </strong>' .
                 '</div> 
                                 </div>
                         </div>
