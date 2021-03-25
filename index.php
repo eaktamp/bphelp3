@@ -52,11 +52,10 @@ $v = date('YmdHis'); // css version Reload
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var shownIds = new Array();
 			setInterval(function() {
 				$.get("config/sql_load.php", function(data) {
 					data = $.parseJSON(data);
-					$("#pop_bp").html("" + data + "");
+					$("#pop_bp").html(data);
 				});
 			}, 3000);
 		});
@@ -106,11 +105,7 @@ $v = date('YmdHis'); // css version Reload
 		<div class="header">
 			<h1 class="page-header"></h1>
 		</div>
-		<style>
-			h1 {
-				font-size: 200px;
-			}
-		</style>
+
 		<div id="pop_bp">
 		</div>
 	</div>
