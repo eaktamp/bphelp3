@@ -152,7 +152,7 @@ $dhc_rt .= '
 		</style>';
 
 
-$sound = 1;
+$sound = 0;
 foreach ($arrayOderby as $key => $array) {
         $color = "";
         $time = time();
@@ -161,6 +161,7 @@ foreach ($arrayOderby as $key => $array) {
                 $sound++;
         } else if ($arrayOderby[$key][0] == 3) {
                 $color = "orange";
+                $sound++;
         } else if ($arrayOderby[$key][0] == 2) {
                 $color = "yellow";
         } else {
