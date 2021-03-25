@@ -152,7 +152,7 @@ $dhc_rt .= '
 		</style>';
 
 
-$sound = 0;
+$sound = 1;
 foreach ($arrayOderby as $key => $array) {
         $color = "";
         $time = time();
@@ -161,7 +161,6 @@ foreach ($arrayOderby as $key => $array) {
                 $sound++;
         } else if ($arrayOderby[$key][0] == 3) {
                 $color = "orange";
-                $sound++;
         } else if ($arrayOderby[$key][0] == 2) {
                 $color = "yellow";
         } else {
@@ -205,6 +204,8 @@ if ($sound > 0) {
                 <source src="audio/Nakom.mp3" type="audio/mpeg">
                 </audio>
                 ';
+                // Emergency
+                // Nakom
         }
 }
 
