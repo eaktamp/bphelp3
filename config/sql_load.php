@@ -202,7 +202,7 @@ if ($sound > 0) {
         if (date("s") < 10 || (date("s") > 30 && date("s") < 40)) {
                 $dhc_rt .=
                         '<audio controls autoplay id="myaudio" style="display:none">
-                <source src="audio/Beep.mp3" type="audio/mpeg">
+                <source src="audio/DrillGear.mp3" type="audio/mpeg">
                 </audio>
                 ';
         }
