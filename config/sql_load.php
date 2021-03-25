@@ -152,7 +152,7 @@ $dhc_rt .= '
 		</style>';
 
 
-$sound = 1;
+$sound = 0;
 foreach ($arrayOderby as $key => $array) {
         $color = "";
         $time = time();
@@ -201,7 +201,7 @@ if ($sound > 0) {
         if (date("s") < 10 || (date("s") > 30 && date("s") < 40)) {
                 $dhc_rt .=
                         '<audio controls autoplay id="myaudio" style="display:none">
-                <source src="audio/Nakom.mp3" type="audio/mpeg">
+                <source src="audio/Emergency.mp3" type="audio/mpeg">
                 </audio>
                 ';
                 // Emergency
