@@ -95,9 +95,8 @@ $v = date('YmdHis'); // css version Reload
 	<script type="text/javascript">
 		$(document).ready(function() {
 			setInterval(function() {
-				$.get("config/sql_load.php", {
-					name: "Donald",
-					town: "Ducktown"
+				$.post("config/sql_load.php", {
+					spclty: '01'
 				}, function(data) {
 					data = $.parseJSON(data);
 					$("#pop_bp").html(data);

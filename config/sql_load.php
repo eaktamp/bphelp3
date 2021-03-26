@@ -1,14 +1,18 @@
 <?php
 include "pg_con.class.php";
 
+
+$spclty = $_POST['spclty'];
+
 $sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,pt.fname,' ',pt.lname,' (',extract(year FROM age(pt.birthday)),'ปี)')as patient,ROUND(opds.rr,0)as rr,ov.vsttime,
-        opds.vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd ,ROUND(pulse,0)as pulse,ROUND(temperature,1)as temperature,oqueue,sp.name as spname
+        opds.vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd ,ROUND(pulse,0)as pulse,ROUND(temperature,1)as temperature,oqueue,sp.spclty,sp.name as spname
         FROM opdscreen opds
         LEFT OUTER JOIN patient pt on pt.hn = opds.hn
         LEFT OUTER JOIN ovst ov on ov.vn = opds.vn
 	LEFT OUTER JOIN spclty sp on ov.spclty = sp.spclty
-        WHERE -- bps >'150' 
-        bps is not null
+        WHERE 1=1
+	AND sp.spclty = '" . $spclty . "' 
+        AND bps is not null
         AND cc IS NULL
         AND opds.vstdate = CURRENT_DATE";
 
@@ -186,7 +190,7 @@ foreach ($arrayOderby as $key => $array) {
                 <div class="col-xs-12 col-sm-6 col-md-4" >
                         <div class="card horizontal cardIcon waves-effect waves-dark" >
                                 <div class="card-image ' . $color . '" >
-                                        <h1 style="padding-top:60% ;color:black;font-weight:bold;">' . $arrayOderby[$key][0] . '</h1>
+                                        <h1 style="padding-top:60% ;color:black;font-weight:bold;">' . $arrayOderby[$key][0] . $fname . '</h1>
                                 </div>
                                 <div class="card-stacked black"> 
                                         <div class="card-content "> 
