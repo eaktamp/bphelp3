@@ -50,16 +50,7 @@ $v = date('YmdHis'); // css version Reload
 	<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css?v=<?php echo $v; ?>">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			setInterval(function() {
-				$.get("config/sql_load.php", function(data) {
-					data = $.parseJSON(data);
-					$("#pop_bp").html(data);
-				});
-			}, 3000);
-		});
-	</script>
+
 
 
 </head>
@@ -101,6 +92,19 @@ $v = date('YmdHis'); // css version Reload
 			</ul>
 		</div>
 	</nav>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			setInterval(function() {
+				$.get("config/sql_load.php", {
+					name: "Donald",
+					town: "Ducktown"
+				}, function(data) {
+					data = $.parseJSON(data);
+					$("#pop_bp").html(data);
+				});
+			}, 3000);
+		});
+	</script>
 	<div id="page-wrapper" style="margin-left: 0px;">
 		<div class="header">
 			<h1 class="page-header"></h1>
@@ -124,6 +128,7 @@ $v = date('YmdHis'); // css version Reload
 	<script type="text/javascript">
 		window.onload = date_time('date_time');
 	</script>
+
 </body>
 
 </html>

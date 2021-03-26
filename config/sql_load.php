@@ -141,14 +141,28 @@ for ($i = 0; $i < sizeof($arrayOderby); $i++) {
 $dhc_rt .= '
                 <style>
 			h1 {
-				font-size: 70px;
+				font-size: 60px;
 			}
                         h2 {
-				font-size: 50px;
+				font-size: 40px;
 			}
                         h3 {
-				font-size: 50px;
+				font-size: 40px;
 			}
+                        .ani {
+                                background-color: red;
+                                animation-name: example;
+                                animation-duration: 2s;
+                        }
+
+                        @keyframes example {
+                                0%   {background-color: #fff7f7;}
+                                20%  {background-color: red;}
+                                40%   {background-color: #fff7f7;}
+                                60%  {background-color: red;}
+                                80%   {background-color: #fff7f7;}
+                                100%   {background-color: red;}
+                        }
 		</style>';
 
 
@@ -157,7 +171,7 @@ foreach ($arrayOderby as $key => $array) {
         $color = "";
         $time = time();
         if ($arrayOderby[$key][0] >= 4) {
-                $color = "red";
+                $color = "ani";
                 $sound++;
         } else if ($arrayOderby[$key][0] == 3) {
                 $color = "orange";
@@ -169,9 +183,9 @@ foreach ($arrayOderby as $key => $array) {
 
         $dhc_rt .=
                 '
-                <div class="col-xs-12 col-sm-6 col-md-6" >
+                <div class="col-xs-12 col-sm-6 col-md-4" >
                         <div class="card horizontal cardIcon waves-effect waves-dark" >
-                                <div class="card-image ' . $color . '">
+                                <div class="card-image ' . $color . '" >
                                         <h1 style="padding-top:60% ;color:black;font-weight:bold;">' . $arrayOderby[$key][0] . '</h1>
                                 </div>
                                 <div class="card-stacked black"> 
