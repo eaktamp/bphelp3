@@ -11,7 +11,7 @@ $sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,pt.fname,' ',pt.lname,' (',ex
         LEFT OUTER JOIN ovst ov on ov.vn = opds.vn
 	LEFT OUTER JOIN spclty sp on ov.spclty = sp.spclty
         WHERE 1=1
-	AND sp.spclty = '" . $spclty . "' 
+	AND (sp.spclty = '" . $spclty . "' OR '9999' = '" . $spclty . "' )
         AND bps is not null
         AND cc IS NULL
         AND opds.vstdate = CURRENT_DATE";
@@ -145,13 +145,13 @@ for ($i = 0; $i < sizeof($arrayOderby); $i++) {
 $dhc_rt .= '
                 <style>
 			h1 {
-				font-size: 60px;
+				font-size: 40px;
 			}
                         h2 {
-				font-size: 40px;
+				font-size: 30px;
 			}
                         h3 {
-				font-size: 40px;
+				font-size: 20px;
 			}
                         .ani {
                                 background-color: red;
@@ -194,7 +194,7 @@ foreach ($arrayOderby as $key => $array) {
                                 </div>
                                 <div class="card-stacked black"> 
                                         <div class="card-content "> 
-                                        <h1 style="color:white;height: 100px;">' .  $arrayOderby[$key][1]  . '</h1> 
+                                        <h1 style="color:white;height: 55px;">' .  $arrayOderby[$key][1]  . '</h1> 
                                 <h3 style="float:right;font-weight:bold;"> HN : ' .  $arrayOderby[$key][2] . '</h3>
                                 </div>
                                 <div class="card-action" style="padding-top: 0px;" >
@@ -202,10 +202,10 @@ foreach ($arrayOderby as $key => $array) {
                                         <h1 style="font-weight:bold;background-color: #FFFFFF; color:#000000;padding:20px;"> Q : <spen style="color:#710a0a;">&nbsp; ' . $arrayOderby[$key][3] . '  </spen>  &nbsp;' .  substr(date($arrayOderby[$key][13]), 0, 5)  .  ' น.</h1> 
                                 </div>
                                 <div class="card-action">' .
-                (intval($arrayOderby[$key][9])  == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbspBP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . '&nbsp</strong>' .
-                (intval($arrayOderby[$key][10]) == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbspP : ' . $arrayOderby[$key][6] . '&nbsp</strong> ' .
-                (intval($arrayOderby[$key][11]) == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbspRR : ' . $arrayOderby[$key][8] . '&nbsp</strong>' .
-                (intval($arrayOderby[$key][12]) == 0 ? '<strong style="font-size: 22px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 30px;">') . '&nbspT : ' .   $arrayOderby[$key][7] . '&nbsp</strong>' .
+                (intval($arrayOderby[$key][9])  == 0 ? '<strong style="font-size: 19px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 23px;">') . '&nbspBP ' . $arrayOderby[$key][4] . ' / ' . $arrayOderby[$key][5] . '&nbsp</strong>' .
+                (intval($arrayOderby[$key][10]) == 0 ? '<strong style="font-size: 19px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 23px;">') . '&nbspP : ' . $arrayOderby[$key][6] . '&nbsp</strong>' .
+                (intval($arrayOderby[$key][11]) == 0 ? '<strong style="font-size: 19px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 23px;">') . '&nbspRR : ' . $arrayOderby[$key][8] . '&nbsp</strong>' .
+                (intval($arrayOderby[$key][12]) == 0 ? '<strong style="font-size: 19px;">' : '<strong style="background-color: yellow; color:#000000;font-size: 23px;">') . '&nbspT : ' .   $arrayOderby[$key][7] . '&nbsp</strong>' .
                 '</div> 
                                 </div>
                         </div>
@@ -216,7 +216,7 @@ foreach ($arrayOderby as $key => $array) {
 
 $dhc_rt .= '</div>';
 if ($sound > 0) {
-        if (date("s") <= 10 || (date("s") >= 30 && date("s") <= 40)) {
+        if (date("s") < 10 || (date("s") >= 30 && date("s") < 40)) {
                 $dhc_rt .=
                         '<audio controls autoplay id="myaudio" style="display:none">
                 <source src="audio/Emergency.mp3" type="audio/mpeg">

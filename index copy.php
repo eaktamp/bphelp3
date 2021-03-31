@@ -58,36 +58,28 @@ $v = date('YmdHis'); // css version Reload
 </head>
 
 <body>
-
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<div id="wrapper">
 		<nav class="navbar navbar-default top-navbar" role="navigation">
-			<form action="#" method="post">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
-					</button>
-					<a class="navbar-brand waves-effect waves-dark" href=""><i class="large material-icons">device_thermostat</i> <strong>BP Check2</strong>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
+				</button>
+				<a class="navbar-brand waves-effect waves-dark" href=""><i class="large material-icons">device_thermostat</i> <strong>BP Check2</strong>
 
-					</a>
+				</a>
 
-					<div id="sideNav" href="" class="closed"><i class="material-icons dp48">toc</i>
-					</div>
-					<ul class="nav navbar-nav navbar-right">
-						<button type="submit" class="btn btn-success" style="margin:12px;">ค้นหา</button>
-					</ul>
-					<ul class=" nav navbar-nav navbar-right">
-						<div id="select_2" style="margin:10px;">
-						</div>
-					</ul>
-
-					<ul class="nav navbar-right">
-						<li>
-							<a href="#" class="">
-								<span class="dt" id="date_time"></span>
-							</a>
-						</li>
-					</ul>
+				<div id="sideNav" href="" class="closed"><i class="material-icons dp48">toc</i>
 				</div>
-			</form>
+
+				<ul class="nav navbar-right">
+					<li>
+						<a href="#" class="">
+							<span class="dt" id="date_time"></span>
+						</a>
+					</li>
+				</ul>
+
+			</div>
 		</nav>
 	</div>
 	<nav class="navbar-default navbar-side" role="navigation" style="left: -260px;">
@@ -102,38 +94,35 @@ $v = date('YmdHis'); // css version Reload
 			</ul>
 		</div>
 	</nav>
-	<style>
-		.form-control {
-			font-size: 18px !important;
-			height: 40px;
-			width: 80%;
-			text-align: center;
-		}
-	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.js-example-basic-single').select2();
+			setInterval(function() {
+				$.post("config/sql_load.php", {
+					spclty: '01'
+				}, function(data) {
+					data = $.parseJSON(data);
+					$("#pop_bp").html(data);
+				});
+			}, 1000);
+		});
+	</script>
 
 	<div id="page-wrapper" style="margin-left: 0px;">
-
 		<div class="header">
-			<h1 class="page-header" style="margin: 0px;padding: 0px;"></h1>
-		</div>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$.get("config/sql_loadSelect2.php", function(data) {
-					data = $.parseJSON(data);
-					$("#select_2").html(data);
-				});
-				$('.js-example-basic-single').select2();
-				setInterval(function() {
-					$.post("config/sql_load.php", {
-						spclty: <?php echo $_POST['spclty_post'] == '' ? '9999' : $_POST['spclty_post'] ?>
-					}, function(data) {
-						data = $.parseJSON(data);
-						$("#pop_bp").html(data);
-					});
-				}, 3000);
-			});
-		</script>
+			<h1 class="page-header"></h1>
+		</div>2
+		<label for="id_label_single">
+			Click this to highlight the single select element
 
+			<select class="js-example-basic-single js-states form-control" id="id_label_single">
+				<option value="AL1">Alabama</option>
+				<option value="WY1">Wyoming</option>
+				<option value="WY2">Wyoming</option>
+				<option value="WY3">Wyoming</option>
+			</select>
+		</label>2
 		<div id="pop_bp">
 		</div>
 	</div>
@@ -152,7 +141,7 @@ $v = date('YmdHis'); // css version Reload
 	<script type="text/javascript">
 		window.onload = date_time('date_time');
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </body>
 
 </html>
