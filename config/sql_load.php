@@ -2,7 +2,7 @@
 include "pg_con.class.php";
 
 
-$spclty = $_POST['spclty'];
+$spclty = str_pad($_POST['spclty'], 2, "0", STR_PAD_LEFT);
 
 $sql_rt = "SELECT  opds.vn,opds.hn,concat(pt.pname,pt.fname,' ',pt.lname,' (',extract(year FROM age(pt.birthday)),'ปี)')as patient,ROUND(opds.rr,0)as rr,ov.vsttime,
         opds.vstdate,ROUND(bps,0)as bps,ROUND(bpd,0)as bpd ,ROUND(pulse,0)as pulse,ROUND(temperature,1)as temperature,oqueue,sp.spclty,sp.name as spname
